@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Navigation</title>
+</head>
+<body>
+    <div th:fragment="content">
+        <nav>
+            <div class="menu">
+                <a href="/list-blogs">List Blogs</a>
+                <a href="/list-categories">List Categories</a>
+                <a href="/create-blog">Add new blog</a>
+                <a href="/create-category">Add new category</a>
+            </div>
+            <div class="search-zone">
+                <form>
+                    <input type="text" name="s" placeholder="Search by author">
+                </form>
+            </div>
+        </nav>
+    </div>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete Blog</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/resource/css/style.css}" />
+</head>
+<body>
+<div th:replace="/template/header :: content"></div>
+
+<div th:replace="/template/navigation :: content"></div>
+
+<section>
+    <div th:replace="/template/left :: content"></div>
+
+    <!--Main content-->
+    <article>
+        <h1>Delete blog</h1>
+        <h2>Are you sure?</h2>
+        <form th:action="@{/delete-blog}" th:object="${blog}" method="post">
+            <input th:type="hidden" name="id" th:field="*{id}">
+            <table align="center">
+                <tr>
+                    <td style="font-weight: bold">Title:</td>
+                    <td th:text="${blog.title}"></td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold">Category:</td>
+                    <td th:text="${blog.category.name}"></td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold">Description:</td>
+                    <td th:text="${blog.description}"></td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold">Content:</td>
+                    <td th:text="${blog.content}"></td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold">Author:</td>
+                    <td th:text="${blog.author}"></td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="text-align: center"><input type="submit" value="Delete blog"></td>
+                </tr>
+            </table>
+        </form>
+        <button onclick="window.location.href = 'http://localhost:8080/list-blogs';">No</button>
+    </article>
+    <!--/Main content-->
+
+</section>
+
+<div th:replace="/template/footer :: content"></div>
+</body>
+</html>

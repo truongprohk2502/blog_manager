@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Blog</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/resource/css/style.css}" />
+</head>
+<body>
+<div th:replace="/template/header :: content"></div>
+
+<div th:replace="/template/navigation :: content"></div>
+
+<section>
+    <div th:replace="/template/left :: content"></div>
+
+    <!--Main content-->
+    <article>
+        <h1>Create blog</h1>
+        <th:block th:if="${message}">
+            <p th:text="${message}"></p>
+        </th:block>
+        <form th:action="@{/create-blog}" th:object="${blog}" method="post">
+            <input type="hidden" th:field="*{id}"/>
+            <table align="center">
+                <tr>
+                    <td>Title:</td>
+                    <td><input type="text" th:field="*{title}"/></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td style="color: red" th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></td>
+                </tr>
+                <tr>
+                    <td>Category:</td>
+                    <td>
+                        <select th:field="*{category}">
+                            <option th:each="c : ${categories}" th:value="${c.id}" th:text="${c.name}"></option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Description:</td>
+                    <td><textarea th:field="*{description}" rows="5"/></textarea></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td style="color: red" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></td>
+                </tr>
+                <tr>
+                    <td>Content:</td>
+                    <td><textarea th:field="*{content}" rows="10"/></textarea></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td style="color: red" th:if="${#fields.hasErrors('content')}" th:errors="*{content}"></td>
+                </tr>
+                <tr>
+                    <td>Author:</td>
+                    <td><input type="text" th:field="*{author}"/></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td style="color: red" th:if="${#fields.hasErrors('author')}" th:errors="*{author}"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="submit" value="Create blog"></td>
+                </tr>
+            </table>
+        </form>
+    </article>
+    <!--/Main content-->
+
+</section>
+
+<div th:replace="/template/footer :: content"></div>
+</body>
+</html>
